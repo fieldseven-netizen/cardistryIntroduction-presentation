@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Joy of Handling Cards - Cardistry for Beginner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+            --sub-text: #666666;
+            --border-color: #dddddd;
+            --transition-speed: 0.8s;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            transition: transform var(--transition-speed) cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        section {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10vh 8vw 4vh 8vw;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .slide-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically between title and page bottom */
+            width: 100%;
+            margin-bottom: 60px; /* Space for page number and padding */
+        }
+
+        .slide-hero {
+            padding-top: 4vh !important;
+            justify-content: center !important;
+        }
+
+        .slide-hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .slide-hero .subtitle {
+            font-size: 1.2rem;
+            margin-top: 3rem;
+            color: var(--sub-text);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            align-self: flex-start;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 0.4rem;
+            width: 100%;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+
+        h2 small {
+            font-size: 0.5em;
+            font-weight: 400;
+            margin-left: 1rem;
+            opacity: 0.7;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .card {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+            background-color: #f7f7f7;
+            color: #000000;
+            box-sizing: border-box;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--sub-text);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000000;
+            z-index: 0;
+        }
+
+        .time-point {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            padding: 0 1rem;
+            text-align: center;
+            flex: 1;
+        }
+
+        .time-point .dot {
+            width: 30px;
+            height: 30px;
+            background: #000000;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        th {
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--sub-text);
+        }
+
+        .quote {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1.4;
+            max-width: 800px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .author {
+            margin-top: 2rem;
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .nav-ui {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: none;
+            border: 1px solid #000000;
+            color: #000000;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .progress {
+            position: fixed;
+            left: 40px;
+            bottom: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #000000;
+            z-index: 100;
+        }
+
+        .bar {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            background: #000000;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bar" id="progressBar"></div>
+    <div class="progress" id="pageNumber">1 / 13</div>
+
+    <div class="container" id="mainContainer">
+        
+        <!-- 1: Hero -->
+        <section class="slide-hero">
+            <div style="font-size: 3.5rem; letter-spacing: -0.01em; margin-bottom: 0rem; font-weight: 900; font-family: 'Noto Sans JP', sans-serif;">カーディストリー入門</div>
+            <div class="subtitle" style="margin-top: 0; font-weight: 700;">Cardistry for Beginner</div>
+            <h1>THE JOY OF<br>HANDLING CARDS</h1>
+            <div style="margin-top: 2rem; font-weight: 300; opacity: 0.6;">触るだけで楽しいトランプの世界</div>
+        </section>
+
+        <!-- 2: What is Cardistry -->
+        <section>
+            <h2>What is Cardistry?<small>カーディストリーとは？</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; width: 100%; align-items: center; max-height: 70vh;">
+                    <div style="font-size: 1.1rem; line-height: 1.7;">
+                        <p>カーディストリーとは、トランプを操り、視覚的な美しさや技術を追求するパフォーマンスアートです。</p>
+                        <p>手品とは異なり、不思議さではなく<strong>「動きの滑らかさ」「構成の美しさ」「独創性」</strong>そのものを表現、鑑賞します。</p>
+                    </div>
+                    <div style="height: 100%; display: flex; align-items: center;">
+                        <img src="Images/IMG_8858.jpg" alt="Cardistry Image" style="width: 100%; height: 40vh; object-fit: cover; object-position: center 80%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3: Three Core Appeals -->
+        <section>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">THREE CORE APPEALS<small>3つの核心的な魅力</small></h2>
+            <div class="slide-content">
+                <div class="grid-3" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <style>
+                        .appeal-card {
+                            background-color: #f7f7f7;
+                            border: 1px solid #eee;
+                            padding: 1.5rem 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            height: 100%;
+                            box-sizing: border-box;
+                            word-break: normal; /* Restore normal breaking for these specific cards to allow wrapping */
+                            overflow-wrap: anywhere;
+                        }
+                        .appeal-card h3 {
+                            font-size: 1.2rem;
+                            font-weight: 800;
+                            margin: 0 0 0.8rem 0;
+                            color: #000;
+                        }
+                        .appeal-card p {
+                            font-size: 0.8rem;
+                            line-height: 1.5;
+                            color: #333;
+                            margin: 0;
+                        }
+                    </style>
+                    <div class="appeal-card">
+                        <svg width="32" height="36" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom: 1rem;"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        <h3>Visual Art</h3>
+                        <p>幾何学的なパターンや、重力を無視したような動き。見る人を一瞬で引き込む圧倒的な視覚的インパクトがあります。</p>
+                    </div>
+                    <div class="appeal-card">
+                        <svg width="32" height="36" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom: 1rem;"><path d="M19,12V8.5a1.5,1.5,0,0,0-3,0V11h-1V5.5a1.5,1.5,0,0,0-3,0V10h-1V3.5a1.5,1.5,0,0,0-3,0V10h-1V5.5a1.5,1.5,0,0,0-3,0V14c0,4.4,3.6,8,8,8h3c4.4,0,8-3.6,8-8V12c0-0.8-0.7-1.5-1.5-1.5S19,11.2,19,12z M4.5,16l-2.5-1.5a1,1,0,0,1,1-1.7l2.5,1.5V16z"/></svg>
+                        <h3>Tactile Skill</h3>
+                        <p>指先の感覚を極限まで研ぎ澄ます技術。カードが手の一部のように動く感覚は、演者自身にも快感を与えます。</p>
+                    </div>
+                    <div class="appeal-card">
+                        <svg width="32" height="36" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom: 1rem;"><path d="M12 2C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.2 3-3.3 3-5.7 0-3.9-3.1-7-7-7zm2 19H10c-.6 0-1 .4-1 1s.4 1 1 1h4c.6 0 1-.4 1-1s-.4-1-1-1z"/><path d="M7.5 9 A 4.5 4.5 0 0 1 10 4.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                        <h3>Creative Flow</h3>
+                        <p>既存の技を学ぶだけでなく、自分だけの新しい動き（ムーブ）を創造する喜び.無限の表現が可能です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4: The Foundation -->
+        <section>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">THE FOUNDATION<small>基礎</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; width: 100%; align-items: center;">
+                    <div style="font-size: clamp(8rem, 20vw, 15rem); font-weight: 900; line-height: 0.8; letter-spacing: -0.05em; text-align: center;">
+                        52
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: 0.02em;">CARDS, INFINITE FORMS</h3>
+                        <div style="font-size: 1rem; line-height: 1.7; color: #333;">
+                            <p style="margin-bottom: 1.5rem;">たった52枚のカード。それだけで構成されるこのアートは、使う道具がシンプルだからこそ、人間の創造性が際立ちます。</p>
+                            <p>高価な機材は不要。1デックのカードさえあれば、世界中どこでもプレイすることができます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5: Brief History -->
+        <section>
+            <h2>Brief History<small>カーディストリーの歴史</small></h2>
+            <div class="slide-content">
+                <div class="timeline">
+                    <div class="time-point">
+                        <div class="dot"></div>
+                        <strong>Origins</strong>
+                        <p>手品の「フラリッシュ」が起源</p>
+                    </div>
+                    <div class="time-point">
+                        <div class="dot"></div>
+                        <strong>1990s</strong>
+                        <p>動作が体系化され始めます</p>
+                    </div>
+                    <div class="time-point">
+                        <div class="dot"></div>
+                        <strong>2000s</strong>
+                        <p>独立した芸術として定着。Dan and dave「The System」が発表。</p>
+                    </div>
+                    <div class="time-point">
+                        <div class="dot"></div>
+                        <strong>Today</strong>
+                        <p>SNSを通じて世界中に普及</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6: Visual Styles -->
+        <section>
+            <h2>Visual Styles<small>ビジュアル・スタイル</small></h2>
+            <div class="slide-content">
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Minimalism</h3>
+                        <p>洗練されたデザイン。幾何学的なラインを強調します。</p>
+                    </div>
+                    <div class="card">
+                        <h3>Kinetic</h3>
+                        <p>スピードと力強さ。空中を舞うダイナミックな動き。</p>
+                    </div>
+                    <div class="card">
+                        <h3>Architectural</h3>
+                        <p>複雑なパケット構造美の追求。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7: Cardistry vs Magic -->
+        <section>
+            <h2>Cardistry vs Magic<small>マジックとの違い</small></h2>
+            <div class="slide-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>比較項目</th>
+                            <th>Magic (手品)</th>
+                            <th>Cardistry (アート)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>目的</td>
+                            <td>驚き・不可能の証明</td>
+                            <td>美しさ・スキルの展示</td>
+                        </tr>
+                        <tr>
+                            <td>技法の見せ方</td>
+                            <td>不可視 (隠す)</td>
+                            <td>可視 (見せる)</td>
+                        </tr>
+                        <tr>
+                            <td>焦点</td>
+                            <td>観客の心理・錯覚</td>
+                            <td>カードの物理的挙動・構成</td>
+                        </tr>
+                        <tr>
+                            <td>結果</td>
+                            <td>「なぜ？」「不思議」という驚き</td>
+                            <td>「美しい」「面白い」という感嘆</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 8: Core Terminology -->
+        <section>
+            <h2>Core Terminology<small>基本用語</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%;">
+                    <div class="card" style="padding: 0.8rem;"><h3>Deck</h3><p>デック。トランプ一組（52枚＋ジョーカー）のこと。</p></div>
+                    <div class="card" style="padding: 0.8rem;"><h3>Packet</h3><p>パケット。デックを数枚〜数十枚に分けた小さな束。</p></div>
+                    <div class="card" style="padding: 0.8rem;"><h3>Flourish</h3><p>フラリッシュ。カードを使った技やディスプレイの総称。</p></div>
+                    <div class="card" style="padding: 0.8rem;"><h3>Move</h3><p>ムーブ。一連の動作や技の流れ、または特定の技のこと。</p></div>
+                    <div class="card" style="padding: 0.8rem;"><h3>Face / Back</h3><p>フェイスは数字面、バックはデザイン面を指します。</p></div>
+                    <div class="card" style="padding: 0.8rem;"><h3>Edge / Corner</h3><p>エッジはカードの縁、コーナーは四隅の角のこと。</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9: Recommended Deck -->
+        <section>
+            <h2>Recommended Deck<small>おすすめのデック</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; width: 100%; align-items: center;">
+                    <div style="font-size: 1rem; line-height: 1.6;">
+                        <h3 style="text-transform: uppercase;">Bicycle Standard</h3>
+                        <p>世界中で最も愛用されているトランプです。カーディストリーを始めるなら、まずはバイシクルから。</p>
+                        <ul style="margin-top: 1rem; color: var(--sub-text); list-style-type: square;">
+                            <li>適度な滑りと弾力性（エアクッション・フィニッシュ）</li>
+                            <li>安価でどこでも手に入り、練習で使い潰せる</li>
+                            <li>世界中のチュートリアル動画で共通の基準となっている</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="images/Bycicle_cards.JPG" alt="Bicycle Cards" style="width: auto; max-width: 100%; height: 40vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10: How to Start -->
+        <section>
+            <h2>How to Start<small>始め方</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; width: 100%;">
+                    <div style="font-size: 0.95rem; line-height: 1.4;">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.8rem;">
+                                <strong style="display: block; font-size: 1.1rem; margin-bottom: 0.2rem; border-left: 5px solid #000; padding-left: 1rem;">グリップ（持ち方）と触り方の習得</strong>
+                                最初にグリップとカードの触り方を習得します。
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <strong style="display: block; font-size: 1.1rem; margin-bottom: 0.2rem; border-left: 5px solid #000; padding-left: 1rem;">基本ムーブの練習</strong>
+                                シャーリアカットなどの基本ムーブから段階的に練習しましょう。
+                            </li>
+                            <li style="margin-bottom: 0.8rem;">
+                                <strong style="display: block; font-size: 1.1rem; margin-bottom: 0.2rem; border-left: 5px solid #000; padding-left: 1rem;">反復と安全な環境</strong>
+                                毎日5～10分の反復練習が大切です。落としてもOK。広い平面で安全に。
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="background: #f9f9f9; padding: 1.2rem; border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: center;">
+                        <p style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; color: #000;">「落とすのは当たり前。失敗を恐れずに。」</p>
+                        <p style="color: var(--sub-text); line-height: 1.4; font-size: 0.8rem;">カードを床に散らばらせることは、指先が新しい感覚を覚えている証拠です。その一歩一歩が、美しいムーブへと繋がっていきます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11: Essential Grips -->
+        <section>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">ESSENTIAL GRIPS<small>基本の持ち方</small></h2>
+            <div class="slide-content">
+                <div class="grid-3">
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/mechanics_grip.JPG" alt="Mechanics Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
+                        <div style="padding: 0.8rem;">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Mechanics Grip</h3>
+                            <p style="font-size: 0.8rem; line-height: 1.4;">全ての基礎となる持ち方。別名ディーラーズ・グリップ。</p>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/straddle_grip.JPG" alt="Straddle Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
+                        <div style="padding: 0.8rem;">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Straddle Grip</h3>
+                            <p style="font-size: 0.8rem; line-height: 1.4;">四辺を指で固定する持ち方.高い安定感を生み出します。</p>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                        <img src="images/biddle_grip.JPG" alt="Biddle Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
+                        <div style="padding: 0.8rem;">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Biddle Grip</h3>
+                            <p style="font-size: 0.8rem; line-height: 1.4;">短辺を掴む持ち方.パケットを切り出す起点となります。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12: Basic Moves -->
+        <section>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">BASIC MOVES<small>基本的なムーブ</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%;">
+                    <div class="card" style="padding: 1.2rem;">
+                        <ul style="list-style: none; padding: 0; font-size: 1.1rem; line-height: 2;">
+                            <li><strong>Charlier Cut</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">シャーリア・カット</span></li>
+                            <li><strong>Swivel Cut</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">スウィベル・カット</span></li>
+                            <li><strong>Revolution Cut</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">レボリューション・カット</span></li>
+                            <li><strong>Scissor Cut</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">シザー・カット</span></li>
+                        </ul>
+                    </div>
+                    <div class="card" style="padding: 1.2rem;">
+                        <ul style="list-style: none; padding: 0; font-size: 1.1rem; line-height: 2;">
+                            <li><strong>Dribble</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">ドリブル</span></li>
+                            <li><strong>Spring</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">スプリング</span></li>
+                            <li><strong>Sybil</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">シビル</span></li>
+                            <li><strong>Fan</strong><span style="color: var(--sub-text); font-size: 0.85rem; margin-left: 1rem;">ファン</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13: Explore Further -->
+        <section>
+            <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">EXPLORE FURTHER<small>最新情報を追う方法</small></h2>
+            <div class="slide-content">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; width: 100%;">
+                    <div class="card" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                            <img src="https://cdn.simpleicons.org/youtube/000000" width="28" height="28" alt="YouTube">
+                            <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">YouTube</h3>
+                        </div>
+                        <p style="font-size: 0.85rem; line-height: 1.6; color: #333;">技術の宝庫です。Fontaine cardsやAnyone、Lotus in hands、School ofCardistryなどのチャンネルは、高品質なチュートリアルを多数公開しています。</p>
+                    </div>
+                    <div class="card" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                            <img src="https://cdn.simpleicons.org/instagram/000000" width="28" height="28" alt="Instagram">
+                            <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Instagram</h3>
+                        </div>
+                        <p style="font-size: 0.85rem; line-height: 1.6; color: #333;">世界中の演者が最新ムーブを投稿する最大の拠点。ハッシュタグ「#cardistry」をフォローしてトレンドをチェックしましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="nav-ui">
+        <button class="nav-btn" onclick="prev()">PREV</button>
+        <button class="nav-btn" onclick="next()">NEXT</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const total = 13;
+        const container = document.getElementById('mainContainer');
+        const bar = document.getElementById('progressBar');
+        const num = document.getElementById('pageNumber');
+
+        function update() {
+            container.style.transform = `translateX(-${current * 100}vw)`;
+            bar.style.width = `${((current + 1) / total) * 100}%`;
+            num.innerText = `${current + 1} / ${total}`;
+            
+            // Unify colors
+            document.body.style.color = '#000000';
+            document.body.style.backgroundColor = '#ffffff';
+        }
+
+        function next() {
+            if (current < total - 1) {
+                current++;
+                update();
+            }
+        }
+
+        function prev() {
+            if (current > 0) {
+                current--;
+                update();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') next();
+            if (e.key === 'ArrowLeft') prev();
+        });
+
+        update();
+    </script>
+</body>
+</html>

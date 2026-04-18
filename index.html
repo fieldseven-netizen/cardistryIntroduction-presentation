@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Joy of Handling Cards - Cardistry for Beginner</title>
+    <title>The Joy of Touching Cards - Cardistry for Beginner</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -20,6 +20,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
+            font-size: 150%; /* Base font size increased to 150% */
             font-family: 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
             background-color: #ffffff;
             color: #000000;
@@ -51,18 +52,25 @@
             color: #000000;
         }
 
-        .slide-content {
+        .content-wrapper {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically between title and page bottom */
+            justify-content: center;
             width: 100%;
-            margin-bottom: 60px; /* Space for page number and padding */
+            /* ページ番号(bottom:30px)を考慮し、タイトルとページ下端の厳密な中間に配置 */
+            padding-bottom: 30px;
+            box-sizing: border-box;
         }
 
         .slide-hero {
-            padding-top: 4vh !important;
+            padding-top: 0 !important;
             justify-content: center !important;
+        }
+
+        .slide-hero .content-wrapper {
+            margin-bottom: 0;
+            align-items: center;
         }
 
         .slide-hero h1 {
@@ -240,6 +248,11 @@
             z-index: 100;
         }
 
+        .slide-inverted {
+            background-color: #0d0d0d !important;
+            color: #ffffff !important;
+        }
+
         .bar {
             position: fixed;
             left: 0;
@@ -254,38 +267,39 @@
 <body>
 
     <div class="bar" id="progressBar"></div>
-    <div class="progress" id="pageNumber">1 / 13</div>
+    <div class="progress" id="pageNumber">1 / 14</div>
 
     <div class="container" id="mainContainer">
         
         <!-- 1: Hero -->
         <section class="slide-hero">
-            <div style="font-size: 3.5rem; letter-spacing: -0.01em; margin-bottom: 0rem; font-weight: 900; font-family: 'Noto Sans JP', sans-serif;">カーディストリー入門</div>
-            <div class="subtitle" style="margin-top: 0; font-weight: 700;">Cardistry for Beginner</div>
-            <h1>THE JOY OF<br>HANDLING CARDS</h1>
-            <div style="margin-top: 2rem; font-weight: 300; opacity: 0.6;">触るだけで楽しいトランプの世界</div>
+            <div class="content-wrapper">
+                <div style="font-size: 3.5rem; letter-spacing: -0.01em; margin-bottom: 0rem; font-weight: 900; font-family: 'Noto Sans JP', sans-serif;">カーディストリー入門</div>
+                <div class="subtitle" style="margin-top: 0; font-weight: 700;">Cardistry for Beginner</div>
+                <h1>THE JOY OF<br>TOUCHING CARDS</h1>
+                <div style="margin-top: 0.5rem; font-weight: 300; opacity: 0.6;">触るだけで楽しいトランプの世界</div>
+            </div>
         </section>
 
         <!-- 2: What is Cardistry -->
         <section>
             <h2>What is Cardistry?<small>カーディストリーとは？</small></h2>
-            <div class="slide-content">
-                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; width: 100%; align-items: center; max-height: 70vh;">
+            <div class="content-wrapper">
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; width: 100%; align-items: center;">
                     <div style="font-size: 1.1rem; line-height: 1.7;">
                         <p>カーディストリーとは、トランプを操り、視覚的な美しさや技術を追求するパフォーマンスアートです。</p>
                         <p>手品とは異なり、不思議さではなく<strong>「動きの滑らかさ」「構成の美しさ」「独創性」</strong>そのものを表現、鑑賞します。</p>
                     </div>
-                    <div style="height: 100%; display: flex; align-items: center;">
-                        <img src="Images/IMG_8858.jpg" alt="Cardistry Image" style="width: 100%; height: 40vh; object-fit: cover; object-position: center 80%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 8px;">
+                        <img src="Images/IMG_8858.jpg" alt="Cardistry Image" style="width: auto; max-width: 100%; height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transform: scale(1.6) translateY(-9%);">
                     </div>
-                </div>
             </div>
         </section>
 
         <!-- 3: Three Core Appeals -->
         <section>
             <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">THREE CORE APPEALS<small>3つの核心的な魅力</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div class="grid-3" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
                     <style>
                         .appeal-card {
@@ -297,7 +311,7 @@
                             align-items: flex-start;
                             height: 100%;
                             box-sizing: border-box;
-                            word-break: normal; /* Restore normal breaking for these specific cards to allow wrapping */
+                            word-break: normal;
                             overflow-wrap: anywhere;
                         }
                         .appeal-card h3 {
@@ -335,7 +349,7 @@
         <!-- 4: The Foundation -->
         <section>
             <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">THE FOUNDATION<small>基礎</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; width: 100%; align-items: center;">
                     <div style="font-size: clamp(8rem, 20vw, 15rem); font-weight: 900; line-height: 0.8; letter-spacing: -0.05em; text-align: center;">
                         52
@@ -354,7 +368,7 @@
         <!-- 5: Brief History -->
         <section>
             <h2>Brief History<small>カーディストリーの歴史</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div class="timeline">
                     <div class="time-point">
                         <div class="dot"></div>
@@ -383,7 +397,7 @@
         <!-- 6: Visual Styles -->
         <section>
             <h2>Visual Styles<small>ビジュアル・スタイル</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div class="grid-3">
                     <div class="card">
                         <h3>Minimalism</h3>
@@ -404,7 +418,7 @@
         <!-- 7: Cardistry vs Magic -->
         <section>
             <h2>Cardistry vs Magic<small>マジックとの違い</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <table>
                     <thead>
                         <tr>
@@ -442,7 +456,7 @@
         <!-- 8: Core Terminology -->
         <section>
             <h2>Core Terminology<small>基本用語</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%;">
                     <div class="card" style="padding: 0.8rem;"><h3>Deck</h3><p>デック。トランプ一組（52枚＋ジョーカー）のこと。</p></div>
                     <div class="card" style="padding: 0.8rem;"><h3>Packet</h3><p>パケット。デックを数枚〜数十枚に分けた小さな束。</p></div>
@@ -457,7 +471,7 @@
         <!-- 9: Recommended Deck -->
         <section>
             <h2>Recommended Deck<small>おすすめのデック</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; width: 100%; align-items: center;">
                     <div style="font-size: 1rem; line-height: 1.6;">
                         <h3 style="text-transform: uppercase;">Bicycle Standard</h3>
@@ -469,16 +483,49 @@
                         </ul>
                     </div>
                     <div style="display: flex; justify-content: center;">
-                        <img src="Images/Bycicle_cards.JPG" alt="Bicycle Cards" style="width: auto; max-width: 100%; height: 40vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                        <img src="Images/Bycicle_cards.JPG" alt="Bicycle Cards" style="width: auto; max-width: 100%; height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 10: How to Start -->
+        <!-- 10: Why Start Cardistry -->
+        <section>
+            <h2>WHY START CARDISTRY?<small>なぜ始めるのか？</small></h2>
+            <div class="content-wrapper">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; width: 100%;">
+                    <div class="card" style="padding: 1.2rem; display: flex; align-items: flex-start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">安価で始められる</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5;">1つのデック（約1,000円）があれば、今すぐ始められます。</p>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 1.2rem; display: flex; align-items: flex-start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">デジタルデトックス</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5;">スマホを置き、指先に集中する時間は、最高のリラックスとマインドフルネスになります。</p>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 1.2rem; display: flex; align-items: flex-start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">グローバルコミュニティ</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5;">言葉の壁を超えて、SNSを通じて世界中のファンと技術を共有できます。</p>
+                        </div>
+                    </div>
+                    <div class="card" style="padding: 1.2rem; display: flex; align-items: flex-start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">創造性の開放</h3>
+                            <p style="font-size: 0.9rem; line-height: 1.5;">自分だけの動きを発見し、世界に発信する喜びがあります。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11: How to Start -->
         <section>
             <h2>How to Start<small>始め方</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; width: 100%;">
                     <div style="font-size: 0.95rem; line-height: 1.4;">
                         <ul style="list-style: none; padding: 0;">
@@ -507,25 +554,25 @@
         <!-- 11: Essential Grips -->
         <section>
             <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">ESSENTIAL GRIPS<small>基本の持ち方</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div class="grid-3">
-                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <img src="Images/mechanics_grip.JPG" alt="Mechanics Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
-                        <div style="padding: 0.8rem;">
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: #fff;">
+                        <img src="Images/mechanics_grip.JPG" alt="Mechanics Grip" style="width: auto; max-width: 100%; height: 40vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); filter: grayscale(100%); margin-top: 1rem;">
+                        <div style="padding: 0.8rem; width: 100%; text-align: left;">
                             <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Mechanics Grip</h3>
                             <p style="font-size: 0.8rem; line-height: 1.4;">全ての基礎となる持ち方。別名ディーラーズ・グリップ。</p>
                         </div>
                     </div>
-                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <img src="Images/straddle_grip.JPG" alt="Straddle Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
-                        <div style="padding: 0.8rem;">
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: #fff;">
+                        <img src="Images/straddle_grip.JPG" alt="Straddle Grip" style="width: auto; max-width: 100%; height: 40vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); filter: grayscale(100%); margin-top: 1rem;">
+                        <div style="padding: 0.8rem; width: 100%; text-align: left;">
                             <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Straddle Grip</h3>
                             <p style="font-size: 0.8rem; line-height: 1.4;">四辺を指で固定する持ち方.高い安定感を生み出します。</p>
                         </div>
                     </div>
-                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                        <img src="Images/biddle_grip.JPG" alt="Biddle Grip" style="width: 100%; height: 35vh; object-fit: cover; filter: grayscale(100%);">
-                        <div style="padding: 0.8rem;">
+                    <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: #fff;">
+                        <img src="Images/biddle_grip.JPG" alt="Biddle Grip" style="width: auto; max-width: 100%; height: 40vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); filter: grayscale(100%); margin-top: 1rem;">
+                        <div style="padding: 0.8rem; width: 100%; text-align: left;">
                             <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Biddle Grip</h3>
                             <p style="font-size: 0.8rem; line-height: 1.4;">短辺を掴む持ち方.パケットを切り出す起点となります。</p>
                         </div>
@@ -537,7 +584,7 @@
         <!-- 12: Basic Moves -->
         <section>
             <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">BASIC MOVES<small>基本的なムーブ</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%;">
                     <div class="card" style="padding: 1.2rem;">
                         <ul style="list-style: none; padding: 0; font-size: 1.1rem; line-height: 2;">
@@ -559,17 +606,17 @@
             </div>
         </section>
 
-        <!-- 13: Explore Further -->
+        <!-- 14: Explore Further -->
         <section>
             <h2 style="font-size: 1.8rem; font-weight: 900; letter-spacing: 0.05em; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 1.5rem; width: 100%;">EXPLORE FURTHER<small>最新情報を追う方法</small></h2>
-            <div class="slide-content">
+            <div class="content-wrapper">
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; width: 100%;">
                     <div class="card" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
                             <img src="https://cdn.simpleicons.org/youtube/000000" width="28" height="28" alt="YouTube">
                             <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">YouTube</h3>
                         </div>
-                        <p style="font-size: 0.85rem; line-height: 1.6; color: #333;">技術の宝庫です。Fontaine cardsやAnyone、Lotus in hands、School ofCardistryなどのチャンネルは、高品質なチュートリアルを多数公開しています。</p>
+                        <p style="font-size: 0.85rem; line-height: 1.6; color: #333;">技術の宝庫です。Fontaine cardsやAnyone、Lotus in hands、School of Cardistryなどのチャンネルは、高品質なチュートリアルを多数公開しています。</p>
                     </div>
                     <div class="card" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
@@ -582,28 +629,59 @@
             </div>
         </section>
 
+        <!-- 15: Questions -->
+        <section class="slide-inverted">
+            <div class="content-wrapper" style="align-items: center; text-align: center; justify-content: center;">
+                <div style="font-size: 5.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: 0.02em; line-height: 0.9;">ANY<br>QUESTIONS?</div>
+                <div style="font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; color: #ccc; letter-spacing: 0.2em;">質問タイム</div>
+                <div style="font-size: 1.2rem; font-weight: 400; color: #ccc;">
+                    デックを手にとってみましょう！
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <div class="nav-ui">
-        <button class="nav-btn" onclick="prev()">PREV</button>
-        <button class="nav-btn" onclick="next()">NEXT</button>
+        <button class="nav-btn" id="prevBtn" onclick="prev()">PREV</button>
+        <button class="nav-btn" id="nextBtn" onclick="next()">NEXT</button>
     </div>
 
     <script>
         let current = 0;
-        const total = 13;
+        const total = 15;
         const container = document.getElementById('mainContainer');
         const bar = document.getElementById('progressBar');
         const num = document.getElementById('pageNumber');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
         function update() {
             container.style.transform = `translateX(-${current * 100}vw)`;
             bar.style.width = `${((current + 1) / total) * 100}%`;
             num.innerText = `${current + 1} / ${total}`;
             
-            // Unify colors
-            document.body.style.color = '#000000';
-            document.body.style.backgroundColor = '#ffffff';
+            if (current === total - 1) {
+                // Invert theme for the last slide
+                document.body.style.backgroundColor = '#0d0d0d';
+                document.body.style.color = '#ffffff';
+                bar.style.backgroundColor = '#ffffff';
+                num.style.color = '#ffffff';
+                prevBtn.style.borderColor = '#ffffff';
+                prevBtn.style.color = '#ffffff';
+                nextBtn.style.borderColor = '#ffffff';
+                nextBtn.style.color = '#ffffff';
+            } else {
+                // Normal theme
+                document.body.style.backgroundColor = '#ffffff';
+                document.body.style.color = '#000000';
+                bar.style.backgroundColor = '#000000';
+                num.style.color = '#000000';
+                prevBtn.style.borderColor = '#000000';
+                prevBtn.style.color = '#000000';
+                nextBtn.style.borderColor = '#000000';
+                nextBtn.style.color = '#000000';
+            }
         }
 
         function next() {
